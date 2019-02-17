@@ -7,12 +7,20 @@ const SERVER_URL = 'ws://localhost:3000/websocket';
 
 export default class App extends React.Component {
   
+  state = {
+    loggedIn: true
+  }
+
+  flipLogin = (x) =>{
+    this.setState({loggedIn: x});
+  }
+
   componentWillMount(){
     console.log('connecting')
     Meteor.connect(SERVER_URL);
     console.log(Meteor.userId())
     if(Meteor.userId()){
-      // this.flipLogin(true);
+      this.flipLogin(true);
     }
   }
 
@@ -29,7 +37,7 @@ export default class App extends React.Component {
       else{
         console.log('email');
         //TODO
-        // this.flipLogin(true);
+        this.flipLogin(true);
       }
     });
     console.log(Meteor.userId())
