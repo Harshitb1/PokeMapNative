@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SignIn from './src/SignIn';
 import Meteor, {createContainer,Accounts} from 'react-native-meteor';
+import PokeMap from './src/PokeMap';
 
 const SERVER_URL = 'ws://localhost:3000/websocket';
 
@@ -43,11 +44,23 @@ export default class App extends React.Component {
     console.log(Meteor.userId())
   } 
 
+  renderView = () =>{
+    if(!this.state.loggedIn){
+      return(
+        <SignIn signIn={this.signIn}/>
+      )
+    }
+    else{
+      return(
+        <PokeMap flipLogin={this.flipLogin}/>
+      )
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-      <SignIn signIn={this.signIn}/>
-
+        {this.renderView()}
       </View>
     );
   }

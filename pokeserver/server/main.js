@@ -24,7 +24,7 @@ Meteor.methods({
 		var lat = loc.latitude;
 		lat = lat + Math.random() * (range2);
 
-		var iconPath = process.env.PWD + '/public';
+		var iconPath = '/ReactNative/PokeMap/pokeserver/public';
 		var icons = fs.readdirSync(iconPath);
 
 		var min = Math.ceil(0);
